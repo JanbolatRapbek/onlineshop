@@ -1,0 +1,13 @@
+.categories {
+  margin-left: -40px;
+  ul {
+    li {
+      cursor: pointer;
+
+      &.active {
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+}

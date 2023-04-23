@@ -1,0 +1,47 @@
+.header {
+  border-bottom: 1px solid #f6f6f6;
+  padding: 40px;
+  margin: 0;
+  &__link {
+    font-size: medium;
+    margin: 0;
+    text-decoration: none;
+  }
+  &__logo {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+
+    P {
+      color: #7b7b7b;
+      margin: 0;
+    }
+  }
+  &__card {
+    button {
+      &__delimiter {
+        background: rgba(255, 255, 255, 0.25);
+      }
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      width: 150px;
+      background: #fe5f1e;
+      border-radius: 30px;
+      border-color: #fe5f1e;
+      justify-content: space-around;
+      cursor: pointer;
+      &:hover {
+        background: darken(#fe5f1e, 4%);
+        &:active {
+          background: darken(#fe5f1e, 10%);
+        }
+      }
+    }
+  }
+}
