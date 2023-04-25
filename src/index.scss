@@ -9,7 +9,7 @@ body {
 }
 
 .wrapper {
-  padding: 3px;
+  padding: 15px;
   left: 45px;
   top: 43px;
   border-radius: 15px;
@@ -60,6 +60,9 @@ body {
   display: flex;
   align-items: center;
   @media (max-width: 500px) {
+    a {
+      margin-bottom: 25px;
+    }
     flex-direction: column;
   }
 }
@@ -90,7 +93,7 @@ ul {
     @media (max-width: 1260px) {
       flex-direction: column-reverse;
       .categories {
-        margin-top: 30px;
+        margin-top: 25px;
         justify-content: center;
       }
     }

@@ -83,6 +83,9 @@
       }
 
       li {
+        display: flex;
+        text-align: center;
+        justify-content: center;
         background-color: #fffdfd6f;
         height: 18px;
         border-radius: 10px;
