@@ -1,3 +1,7 @@
+.container {
+  margin: 25px 100px;
+}
+
 .cart {
   &__top {
     margin-bottom: 25px;
@@ -7,6 +11,9 @@
       display: flex;
       justify-items: center;
       align-items: center;
+      svg {
+        margin-right: 10px;
+      }
     }
   }
   &__clear {
@@ -39,5 +46,13 @@ ul {
       width: 80;
       height: 80px;
     }
+  }
+}
+.content {
+  &__items {
+  }
+  &__cart {
+    display: flex;
+    flex-direction: column;
   }
 }

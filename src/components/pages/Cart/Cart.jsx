@@ -4,7 +4,7 @@ import pizzas from "../../../assets/img/1.jpg";
 
 const Cart = () => {
   return (
-    <div className="container container--cart">
+    <div className="container">
       <div className="cart">
         <div className="cart__top">
           <h2 className="content__title">
@@ -81,20 +81,14 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart__bottom"></div>
-        <div className="content__items"></div>
-        <ul>
-          <li>
-            <img src={pizzas} alt="pizza"></img>
-            <h2>Pizza</h2>
-            <p>dsfadsfdsf</p>
-            <span>2000 tg.</span>
-          </li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <div className="content__items">
+          <div className="content__cart"></div>
+          <img src={pizzas} alt="pizza"></img>
+          <h2>Pizza</h2>
+          <p>dsfadsfdsf</p>
+          <span>2000 tg.</span>
+        </div>
+
         <div className="cart__bottom-details">
           <span>
             {" "}
@@ -106,10 +100,7 @@ const Cart = () => {
           </span>
         </div>
         <div className="cart__bottom-buttons">
-          <a
-            hfer="/"
-            className="button button--outline button--add go-back-btn"
-          >
+          <div className="">
             <svg
               width="8"
               height="14"
@@ -127,7 +118,7 @@ const Cart = () => {
             </svg>
 
             <span>Вернуться назад</span>
-          </a>
+          </div>
           <div className="button pay-btn">
             <span>Оплатить сейчас</span>
           </div>
