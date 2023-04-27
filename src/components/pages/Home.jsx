@@ -4,8 +4,10 @@ import CardItem from "../CardItem";
 import Categories from "../Categories";
 import Sort from "../Sort";
 import Skeleton from "../CardItem/Skeleton";
+import { SearchContext } from "../../App";
 
 const Home = () => {
+  const { searchValue } = React.useContext(SearchContext);
   const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
@@ -45,7 +47,16 @@ const Home = () => {
         <div className="pizza-block">
           {isLoading
             ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-            : items.map((obj) => <CardItem key={obj.id} {...obj} />)}
+            : items
+                .filter((obj) => {
+                  if (
+                    obj.title.toLowerCase().includes(searchValue.toLowerCase())
+                  ) {
+                    return true;
+                  }
+                  return false;
+                })
+                .map((obj) => <CardItem key={obj.id} {...obj} />)}
         </div>
       </div>
     </div>
