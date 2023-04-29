@@ -6,7 +6,11 @@ import Sort from "../Sort";
 import Skeleton from "../CardItem/Skeleton";
 import { SearchContext } from "../../App";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId, setSort } from "../../redux/slicer/filterSlice";
+import {
+  setCategoryId,
+  setSort,
+  setCurrentPage,
+} from "../../redux/slicer/filterSlice";
 import axios from "axios";
 import { Pagination } from "../Pagination";
 
@@ -17,6 +21,10 @@ const Home = () => {
 
   const categoryId = useSelector((state) => state.filter.categoryId);
   const sortType = useSelector((state) => state.filter.sortValue);
+  const currentPage = useSelector((state) => state.filter.currentPage);
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -25,7 +33,7 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     axios
       .get(
-        `https://63e3c485c919fe386c0e6ec4.mockapi.io/pizzas?${category}&sortBy=${sortBy}&order=${order}`
+        `https://63e3c485c919fe386c0e6ec4.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}`
       )
       .then((res) => {
         setItems(res.data);
@@ -33,7 +41,7 @@ const Home = () => {
       });
     setIsLoading(true);
     window.scrollTo(0, 0);
-  }, [categoryId, sortType]);
+  }, [categoryId, sortType, currentPage]);
 
   return (
     <div className="content">
@@ -68,7 +76,7 @@ const Home = () => {
                 .map((obj) => <CardItem key={obj.id} {...obj} />)}
         </div>
       </div>
-      <Pagination />{" "}
+      <Pagination currentPage={currentPage} onChange={onChangePage} />{" "}
     </div>
   );
 };
