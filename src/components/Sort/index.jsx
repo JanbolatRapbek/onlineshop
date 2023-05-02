@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useRef, memo } from "react";
 import "./Sort.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../../redux/slicer/filterSlice";
+export const Sortlist = [
+  { name: "популярности (по возрастанию)", sortProperty: "-rating" },
+  { name: "популярности (по убыванию)", sortProperty: "rating" },
+  { name: "цене (по возрастанию)", sortProperty: "-price" },
+  { name: "цене (по убыванию)", sortProperty: "price" },
+  { name: "алфавиту (по возрастанию)", sortProperty: "-title" },
+  { name: "алфавиту (по убыванию)", sortProperty: "title" },
+];
 
-const Sort = () => {
+export const Sort = React.memo(({ value }) => {
   const [open, setOpen] = React.useState(false);
-  const list = [
-    { name: "популярности (по возрастанию)", sort: "-rating" },
-    { name: "популярности (по убыванию)", sort: "rating" },
-    { name: "цене (по возрастанию)", sort: "-price" },
-    { name: "цене (по убыванию)", sort: "price" },
-    { name: "алфавиту (по возрастанию)", sort: "-title" },
-    { name: "алфавиту (по убыванию)", sort: "title" },
-  ];
 
   const onClickList = (obj) => {
     dispash(setSort(obj));
     setOpen(false);
   };
-  const sort = useSelector((state) => state.filter.sortValue);
+  const sortValue = useSelector((state) => state.filter.sortValue);
   const dispash = useDispatch();
+  const sortRef = React.useRef(null);
 
   return (
     <div className="sort">
@@ -37,16 +38,18 @@ const Sort = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{sort.name}</span>
+        <span onClick={() => setOpen(!open)}>{sortValue.name}</span>
       </div>
       {open && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, index) => (
+            {Sortlist.map((obj, index) => (
               <li
                 key={index}
                 onClick={() => onClickList(obj)}
-                className={sort.sort === obj.sort ? "active" : " "}
+                className={
+                  sortValue.sortProperty === obj.sortProperty ? "active" : " "
+                }
               >
                 {obj.name}
               </li>
@@ -56,6 +59,6 @@ const Sort = () => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;
